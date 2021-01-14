@@ -1,14 +1,24 @@
-var createError = require("http-errors");
-var express = require("express");
-var Fingerprint = require("express-fingerprint");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const Fingerprint = require("express-fingerprint");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const reqIpMiddleware = require("./middlewares/ip");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 
-var app = express();
+const app = express();
+
+app.set("trust proxy", true);
+// app.use((req, res, next) => {
+//   req.ip = RequestIp.getClientIp(req);
+
+//   next();
+// });
+
+app.use(reqIpMiddleware);
 
 app.use(
   Fingerprint({

@@ -4,15 +4,11 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-  const geoData = await axios.get(
-    "http://ip-api.com/json/" + ip + "?fields=25948159"
-  );
+  const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
 
-  // console.log("==========================================================");
-  // console.log("Hash: ", req.fingerprint.hash);
-  // console.log(req.fingerprint);
-  // console.log("==========================================================");
+  const geoData = await axios.get(
+    "http://ip-api.com/json/" + req.ip + "?fields=25948159"
+  );
 
   console.log(geoData.data);
   res.render("index", {
