@@ -4,13 +4,11 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-  const ip = req.headers["HTTP_CF_CONNECTING_IP"] || req.ip;
-
   const geoData = await axios.get(
-    "http://ip-api.com/json/" + ip + "?fields=25948159"
+    "http://ip-api.com/json/" + req.cf_ip + "?fields=25948159"
   );
 
-  console.log(ip);
+  console.log(geoData.data);
   res.render("index", {
     title: "[pxlwrx]",
     data: {

@@ -5,6 +5,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const reqIpMiddleware = require("./middlewares/ip");
+var cloudflare = require("cloudflare-express");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -12,12 +13,7 @@ const usersRouter = require("./routes/users");
 const app = express();
 
 app.set("trust proxy", true);
-// app.use((req, res, next) => {
-//   req.ip = RequestIp.getClientIp(req);
-
-//   next();
-// });
-
+app.use(cloudflare.restore());
 app.use(reqIpMiddleware);
 
 app.use(
