@@ -1,5 +1,5 @@
 <main>
-  <div class="container centered canvas" style="height: calc(100vh - 42px);">
+  <div class="container centered" style="height:100vh">
     <div>
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
         height="100%" class="filterwrapper">
@@ -59,7 +59,27 @@
           </text>
         </svg>
       </figure>
-      <pre><code class="hljs json">{{data.geodata}}</code></pre>
+
+    </div>
+  </div>
+
+  <div class="container centered" style="height:100vh">
+    <br>
+    <div>
+      <div class="terminal-card">
+        <header>Fingerprint</header>
+        <div>
+          <pre style="display:contents"><code class="hljs json">{{data.fingerprint}}</code></pre>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="terminal-card">
+        <header>GeoIp</header>
+        <div>
+          <pre style="display:contents"><code class="hljs json">{{data.geodata}}</code></pre>
+        </div>
+      </div>
     </div>
   </div>
 </main>
