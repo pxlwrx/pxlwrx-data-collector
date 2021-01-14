@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-  const ip = req.headers["CF-Connecting-IP"] || req.ip;
+  const ip = req.headers["HTTP_CF_CONNECTING_IP"] || req.ip;
 
   const geoData = await axios.get(
     "http://ip-api.com/json/" + ip + "?fields=25948159"
